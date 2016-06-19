@@ -1,10 +1,10 @@
 {
   "name":        "mb-tec/google_maps",
   "description": "Google Maps Geocoder for Zend Framework 2",
-  "homepage":    "https://github.com/mb-tec/GoogleMaps",
+  "homepage":    "https://bitbucket.org/mbuesing/zf-email",
   "type":        "library",
   "license":     "GNU General Public License",
-  "keywords":   ["mb-tec", "googlemaps", "google", "maps", "zf2", "zend", "framework"],
+  "keywords":   ["mb-tec", "email", "zf2", "zend", "framework"],
   "authors": [
     {
       "name":     "Matthias Büsing",
@@ -26,6 +26,6 @@
     "zendframework/zend-version": "2.*"
   },
   "autoload": {
-    "psr-0": {"MBtecGoogleMaps": "src/"}
+    "psr-0": {"MBtecEmail": "src/"}
   }
 }
