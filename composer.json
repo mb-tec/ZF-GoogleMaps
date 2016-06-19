@@ -3,8 +3,8 @@
   "description": "Google Maps Geocoder for Zend Framework 2",
   "homepage":    "https://github.com/mb-tec/GoogleMaps",
   "type":        "library",
-  "license":     "BSD-3-Clause",
-  "keywords":   ["mb-tec", "googlemaps", "zf2", "zend", "framework"],
+  "license":     "GNU General Public License",
+  "keywords":   ["mb-tec", "googlemaps", "google", "maps", "zf2", "zend", "framework"],
   "authors": [
     {
       "name":     "Matthias Büsing",
