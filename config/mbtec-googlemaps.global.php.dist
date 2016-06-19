@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'mbtec' => [
+        'google_maps' => [
+            'key' => '...',
+        ],
+    ],
+];
