@@ -1,7 +1,7 @@
 {
-  "name":        "mb-tec/google_maps",
+  "name":        "mb-tec/zf-google_maps",
   "description": "Google Maps Geocoder for Zend Framework 2",
-  "homepage":    "https://github.com/mb-tec/GoogleMaps",
+  "homepage":    "https://bitbucket.org/mbuesing/zf-googlemaps",
   "type":        "library",
   "license":     "GNU General Public License",
   "keywords":   ["mb-tec", "googlemaps", "google", "maps", "zf2", "zend", "framework"],
