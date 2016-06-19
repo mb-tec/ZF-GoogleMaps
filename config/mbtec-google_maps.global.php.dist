@@ -3,7 +3,7 @@
 return [
     'mbtec' => [
         'google_maps' => [
-            'key' => '...',
+            'api_key' => '...',
         ],
     ],
 ];
