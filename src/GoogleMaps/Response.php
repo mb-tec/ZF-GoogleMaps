@@ -1,10 +1,10 @@
 <?php
 
-namespace MBtec\GoogleMaps;
+namespace MBtecZfGoogleMaps;
 
 /**
  * Class        Response
- * @package     MBtec\GoogleMaps
+ * @package     MBtecZfGoogleMaps
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

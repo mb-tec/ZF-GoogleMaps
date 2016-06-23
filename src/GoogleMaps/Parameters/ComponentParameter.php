@@ -1,10 +1,10 @@
 <?php
 
-namespace MBtec\GoogleMaps\Parameters;
+namespace MBtecZfGoogleMaps\Parameters;
 
 /**
  * Class        ComponentParameter
- * @package     MBtec\GoogleMaps\Parameters
+ * @package     MBtecZfGoogleMaps\Parameters
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

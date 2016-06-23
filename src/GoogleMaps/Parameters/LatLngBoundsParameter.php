@@ -1,13 +1,13 @@
 <?php
 
-namespace MBtec\GoogleMaps\Parameters;
+namespace MBtecZfGoogleMaps\Parameters;
 
-use MBtec\GoogleMaps\Resources\LatLngBounds;
-use MBtec\GoogleMaps\Exception\InvalidArgumentException;
+use MBtecZfGoogleMaps\Resources\LatLngBounds;
+use MBtecZfGoogleMaps\Exception\InvalidArgumentException;
 
 /**
  * Class        LatLngBoundsParameter
- * @package     MBtec\GoogleMaps\Parameters
+ * @package     MBtecZfGoogleMaps\Parameters
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

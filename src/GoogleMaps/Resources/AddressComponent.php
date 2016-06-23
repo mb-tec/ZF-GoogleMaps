@@ -1,6 +1,6 @@
 <?php
 
-namespace MBtec\GoogleMaps\Resources;
+namespace MBtecZfGoogleMaps\Resources;
 
 use Zend\Stdlib\ArraySerializableInterface;
 

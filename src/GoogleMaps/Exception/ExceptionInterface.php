@@ -1,10 +1,10 @@
 <?php
 
-namespace MBtec\GoogleMaps\Exception;
+namespace MBtecZfGoogleMaps\Exception;
 
 /**
  * Interface ExceptionInterface
- * @package MBtec\GoogleMaps\Exception
+ * @package MBtecZfGoogleMaps\Exception
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

@@ -1,12 +1,12 @@
 <?php
 
-namespace MBtec\GoogleMaps;
+namespace MBtecZfGoogleMaps;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 /**
  * Class        Module
- * @package     MBtec\GoogleMaps
+ * @package     MBtecZfGoogleMaps
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License
@@ -15,7 +15,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 class Module implements AutoloaderProviderInterface
 {
     /**
-     * Return MBtec\GoogleMaps autoload config.
+     * Return MBtecZfGoogleMaps autoload config.
      *
      * @see AutoloaderProviderInterface::getAutoloaderConfig()
      * @return array

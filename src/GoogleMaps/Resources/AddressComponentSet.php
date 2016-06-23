@@ -1,8 +1,8 @@
 <?php
 
-namespace MBtec\GoogleMaps\Resources;
+namespace MBtecZfGoogleMaps\Resources;
 
-use MBtec\GoogleMaps\GenericCollection;
+use MBtecZfGoogleMaps\GenericCollection;
 
 class AddressComponentSet extends GenericCollection
 {

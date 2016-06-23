@@ -1,13 +1,13 @@
 <?php
 
-namespace MBtec\GoogleMaps;
+namespace MBtecZfGoogleMaps;
 
-use MBtec\GoogleMaps\Exception\InvalidArgumentException;
-use MBtec\GoogleMaps\Exception\OutOfBoundsException;
+use MBtecZfGoogleMaps\Exception\InvalidArgumentException;
+use MBtecZfGoogleMaps\Exception\OutOfBoundsException;
 
 /**
  * Class        GenericCollection
- * @package     MBtec\GoogleMaps
+ * @package     MBtecZfGoogleMaps
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

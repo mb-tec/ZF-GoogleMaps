@@ -1,14 +1,14 @@
 <?php
 
-namespace MBtec\GoogleMaps;
+namespace MBtecZfGoogleMaps;
 
-use MBtec\GoogleMaps\Parameters\ComponentSetParameter;
-use MBtec\GoogleMaps\Parameters\LatLngBoundsParameter;
-use MBtec\GoogleMaps\Parameters\LatLngParameter;
+use MBtecZfGoogleMaps\Parameters\ComponentSetParameter;
+use MBtecZfGoogleMaps\Parameters\LatLngBoundsParameter;
+use MBtecZfGoogleMaps\Parameters\LatLngParameter;
 
 /**
  * Class        Request
- * @package     MBtec\GoogleMaps
+ * @package     MBtecZfGoogleMaps
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

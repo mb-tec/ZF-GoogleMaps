@@ -1,16 +1,16 @@
 <?php
 
-namespace MBtec\GoogleMaps;
+namespace MBtecZfGoogleMaps;
 
 use Zend\Hydrator\ArraySerializable;
 use Zend\Json\Json;
 use Zend\Http\Client as HttpClient;
 use Zend\Uri\Uri;
-use MBtec\GoogleMaps\Exception;
+use MBtecZfGoogleMaps\Exception;
 
 /**
  * Class        Geocoder
- * @package     MBtec\GoogleMaps
+ * @package     MBtecZfGoogleMaps
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License

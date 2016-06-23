@@ -1,6 +1,6 @@
 <?php
 
-namespace MBtec\GoogleMaps\Resources\Exception;
+namespace MBtecZfGoogleMaps\Resources\Exception;
 
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {

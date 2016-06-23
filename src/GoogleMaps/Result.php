@@ -1,16 +1,16 @@
 <?php
 
-namespace MBtec\GoogleMaps;
+namespace MBtecZfGoogleMaps;
 
-use MBtec\GoogleMaps\Resources\AddressComponent;
-use MBtec\GoogleMaps\Resources\Geometry;
-use MBtec\GoogleMaps\Resources\AddressComponentSet;
+use MBtecZfGoogleMaps\Resources\AddressComponent;
+use MBtecZfGoogleMaps\Resources\Geometry;
+use MBtecZfGoogleMaps\Resources\AddressComponentSet;
 use Zend\Stdlib\ArraySerializableInterface;
-use MBtec\GoogleMaps\Exception\InvalidArgumentException;
+use MBtecZfGoogleMaps\Exception\InvalidArgumentException;
 
 /**
  * Class        Result
- * @package     MBtec\GoogleMaps
+ * @package     MBtecZfGoogleMaps
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License
