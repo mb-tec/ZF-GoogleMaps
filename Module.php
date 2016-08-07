@@ -2,7 +2,9 @@
 
 namespace MBtecZfGoogleMaps;
 
+use Zend\View\HelperPluginManager;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 
 /**
  * Class        Module
@@ -12,7 +14,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
  * @license     GNU General Public License
  * @link        http://mb-tec.eu
  */
-class Module implements AutoloaderProviderInterface
+class Module implements AutoloaderProviderInterface, ViewHelperProviderInterface
 {
     /**
      * Return MBtecZfGoogleMaps autoload config.
@@ -25,6 +27,22 @@ class Module implements AutoloaderProviderInterface
         return [
             'Zend\Loader\ClassMapAutoloader' => [
                 __DIR__ . '/autoload_classmap.php',
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getViewHelperConfig()
+    {
+        return [
+            'factories' => [
+                'googleMapsJs' => function(HelperPluginManager $oPm) {
+                    $sApiKey = $oPm->getServiceLocator()->get('config')['mbtec']['zf-google_maps']['api_key'];
+
+                    return new View\Helper\GoogleMapsJs($sApiKey);
+                },
             ],
         ];
     }
