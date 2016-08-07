@@ -30,5 +30,6 @@ return array(
     'MBtecZfGoogleMaps\Exception\RuntimeException'                    => __DIR__ . '/src/GoogleMaps/Exception/RuntimeException.php',
     'MBtecZfGoogleMaps\Exception\OutOfBoundsException'                => __DIR__ . '/src/GoogleMaps/Exception/OutOfBoundsException.php',
     'MBtecZfGoogleMaps\Exception\ExceptionInterface'                  => __DIR__ . '/src/GoogleMaps/Exception/ExceptionInterface.php',
+    'MBtecZfGoogleMaps\View\Helper\GoogleMapsJs'                      => __DIR__ . '/src/GoogleMaps/View/Helper/GoogleMapsJs.php',
     'MBtecZfGoogleMaps\Module'                                        => __DIR__ . '/Module.php',
 );
