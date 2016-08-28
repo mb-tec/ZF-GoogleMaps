@@ -1,9 +1,0 @@
-<?php
-
-return [
-    'mbtec' => [
-        'zf-google_maps' => [
-            'api_key' => '...',
-        ],
-    ],
-];

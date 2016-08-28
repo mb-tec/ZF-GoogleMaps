@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'mbtec' => [
+        'google' => [
+            'api' => [
+                'browser_key' => '...',
+                'server_key' => '...',
+            ],
+        ],
+    ],
+];
