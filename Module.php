@@ -38,8 +38,8 @@ class Module implements AutoloaderProviderInterface, ViewHelperProviderInterface
     {
         return [
             'factories' => [
-                'googleMapsJs' => function(HelperPluginManager $oPm) {
-                    $sApiKey = (string)$oPm->getServiceLocator()->get('config')['mbtec']['google']['api']['browser_key'];
+                'googleMapsJs' => function($oSm) {
+                    $sApiKey = (string)$oSm->get('config')['mbtec']['google']['api']['browser_key'];
 
                     return new View\Helper\GoogleMapsJs($sApiKey);
                 },
