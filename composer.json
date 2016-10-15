@@ -1,29 +1,33 @@
 {
-  "name":        "mb-tec/zf-google_maps",
-  "description": "Google Maps Geocoder for Zend Framework 2",
-  "homepage":    "https://bitbucket.org/mbuesing/zf-googlemaps",
-  "type":        "library",
-  "license":     "GNU General Public License",
-  "keywords":   ["mb-tec", "googlemaps", "google", "maps", "zf2", "zend", "framework"],
+  "name": "mb-tec/zf-google_maps",
+  "description": "Google Maps Geocoder for Zend Framework 3",
+  "homepage": "https://bitbucket.org/mbuesing/zf-googlemaps",
+  "type": "library",
+  "license": "GNU General Public License",
+  "keywords": [
+    "mb-tec",
+    "googlemaps",
+    "google",
+    "maps",
+    "zf3",
+    "zend",
+    "framework"
+  ],
   "authors": [
     {
-      "name":     "Matthias Büsing",
-      "email":    "info@mb-tec.eu",
+      "name": "Matthias Büsing",
+      "email": "info@mb-tec.eu",
       "homepage": "http://www.mb-tec.eu",
-      "role":     "Developer"
+      "role": "Developer"
     }
   ],
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=5.5",
-    "zendframework/zend-version": "2.*"
+    "php": ">=5.6"
   },
   "suggest": {
     "zendframework/zend-modulemanager": "To use it as a Zend Framework module"
-  },
-  "require-dev": {
-    "zendframework/zend-version": "2.*"
   },
   "autoload": {
     "psr-0": {
