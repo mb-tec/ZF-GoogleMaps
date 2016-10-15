@@ -3,7 +3,7 @@
   "description": "Google Maps Geocoder for Zend Framework 3",
   "homepage": "https://bitbucket.org/mbuesing/zf-googlemaps",
   "type": "library",
-  "license": "GNU General Public License",
+  "license": "GPL-3.0",
   "keywords": [
     "mb-tec",
     "googlemaps",
