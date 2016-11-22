@@ -95,4 +95,11 @@ class Response
         return $this;
 	}
 
+    /**
+     * @return bool
+     */
+	public function isOk()
+    {
+        return $this->getStatus() == self::OK;
+    }
 }
