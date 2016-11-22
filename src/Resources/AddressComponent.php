@@ -4,6 +4,14 @@ namespace MBtecZfGoogleMaps\Resources;
 
 use Zend\Stdlib\ArraySerializableInterface;
 
+/**
+ * Class        AddressComponent
+ * @package     MBtecZfGoogleMaps\Resources
+ * @author      Matthias Büsing <info@mb-tec.eu>
+ * @copyright   2016 Matthias Büsing
+ * @license     GNU General Public License
+ * @link        http://mb-tec.eu
+ */
 class AddressComponent implements ArraySerializableInterface
 {
 	const STREET_ADDRESS 			 = 'street_address';
@@ -105,10 +113,10 @@ class AddressComponent implements ArraySerializableInterface
 	 */
 	public function getArrayCopy() 
 	{
-		return array(
+		return [
 			'long_name' => $this->longName,
 			'short_name' => $this->shortName,
 			'types' => $this->types,
-		);
+		];
 	}
 }

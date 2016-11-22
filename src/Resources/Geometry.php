@@ -4,6 +4,14 @@ namespace MBtecZfGoogleMaps\Resources;
 
 use Zend\Stdlib\ArraySerializableInterface;
 
+/**
+ * Class        Geometry
+ * @package     MBtecZfGoogleMaps\Resources
+ * @author      Matthias Büsing <info@mb-tec.eu>
+ * @copyright   2016 Matthias Büsing
+ * @license     GNU General Public License
+ * @link        http://mb-tec.eu
+ */
 class Geometry implements ArraySerializableInterface
 {
 	const APPROXIMATE 		 = 'approximate';
@@ -83,11 +91,11 @@ class Geometry implements ArraySerializableInterface
 	 */
 	public function getArrayCopy() 
 	{
-		return array(
+		return [
 			'location' => $this->location->getArrayCopy(),
 			'location_type' => $this->locationType,
 			'viewport' => $this->viewport->getArrayCopy(),
 			'bounds' => $this->bounds->getArrayCopy(),
-		);
+		];
 	}
 }
