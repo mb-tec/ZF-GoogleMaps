@@ -91,34 +91,33 @@ class GeoCoder
             throw new MBtecZfGoogleMaps\Exception\InvalidArgumentException('request');
         }
 
-        $uri = new Uri();
-        $uri->setScheme(self::GOOGLE_MAPS_SCHEME);
-        $uri->setHost(self::GOOGLE_MAPS_APIS_URL);
-        $uri->setPath(self::GOOGLE_GEOCODING_API_PATH);
-
-        $urlParameters = $request->getUrlParameters();
-        if (null === $urlParameters) {
+        $aUrlParameters = $request->getUrlParameters();
+        if (empty($aUrlParameters)) {
             throw new MBtecZfGoogleMaps\Exception\RuntimeException('Invalid URL parameters');
         }
 
-        $urlParameters['key'] = $this->_sApiServerKey;
+        $aUrlParameters['key'] = $this->_sApiServerKey;
 
-        $uri->setQuery($urlParameters);
-        $client = $this->getHttpClient();
-        $client->resetParameters();
-        $client->setUri($uri);
+        $uri = new Uri();
+        $uri
+            ->setScheme(self::GOOGLE_MAPS_SCHEME)
+            ->setHost(self::GOOGLE_MAPS_APIS_URL)
+            ->setPath(self::GOOGLE_GEOCODING_API_PATH)
+            ->setQuery($aUrlParameters);
+
+        $client = $this
+            ->getHttpClient()
+            ->resetParameters()
+            ->setUri($uri);
 
         $stream = $client->send();
 
         $body = Json::decode($stream->getBody(), Json::TYPE_ARRAY);
-        $hydrator = new ArraySerializable();
 
-        $response = new MBtecZfGoogleMaps\Response();
-        $response->setRawBody($body);
         if (!isset($body['status'])) {
             throw new MBtecZfGoogleMaps\Exception\RuntimeException('Invalid status');
         }
-        $response->setStatus($body['status']);
+
         if (!isset($body['results'])) {
             throw new MBtecZfGoogleMaps\Exception\RuntimeException('Invalid results');
         }
@@ -127,13 +126,21 @@ class GeoCoder
             throw new MBtecZfGoogleMaps\Exception\NoResultsException('Empty resultset');
         }
 
+        $hydrator = new ArraySerializable();
+
         $resultSet = new MBtecZfGoogleMaps\ResultSet();
+
         foreach ($body['results'] as $data) {
             $result = new MBtecZfGoogleMaps\Result();
             $hydrator->hydrate($data, $result);
             $resultSet->addElement($result);
         }
-        $response->setResults($resultSet);
+
+        $response = new MBtecZfGoogleMaps\Response();
+        $response
+            ->setRawBody($body)
+            ->setStatus($body['status'])
+            ->setResults($resultSet);
 
         return $response;
     }

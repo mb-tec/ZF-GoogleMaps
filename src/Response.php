@@ -43,12 +43,16 @@ class Response
 		return $this->status;
 	}
 
-	/**
-	 * @param string $status
-	 */
+    /**
+     * @param $status
+     *
+     * @return $this
+     */
 	public function setStatus($status) 
 	{
 		$this->status = $status;
+
+        return $this;
 	}
 
 	/**
@@ -59,12 +63,16 @@ class Response
 		return $this->results;
 	}
 
-	/**
-	 * @param ResultSet $results
-	 */
+    /**
+     * @param ResultSet $results
+     *
+     * @return $this
+     */
 	public function setResults(ResultSet $results) 
 	{
 		$this->results = $results;
+
+        return $this;
 	}
 
 	/**
@@ -75,12 +83,16 @@ class Response
 		return $this->rawBody;
 	}
 
-	/**
-	 * @param $rawBody
-	 */
+    /**
+     * @param $rawBody
+     *
+     * @return $this
+     */
 	public function setRawBody($rawBody) 
 	{
 		$this->rawBody = $rawBody;
+
+        return $this;
 	}
 
 }

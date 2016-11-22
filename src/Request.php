@@ -2,10 +2,6 @@
 
 namespace MBtecZfGoogleMaps;
 
-use MBtecZfGoogleMaps\Parameters\ComponentSetParameter;
-use MBtecZfGoogleMaps\Parameters\LatLngBoundsParameter;
-use MBtecZfGoogleMaps\Parameters\LatLngParameter;
-
 /**
  * Class        Request
  * @package     MBtecZfGoogleMaps
@@ -22,12 +18,10 @@ class Request
 	 * @var string
 	 */
 	protected $_address;
-	
-	/**
-	 * Latitude / longitude to perform reverse geocoding (required)
-	 * 
-	 * @var LatLng
-	 */
+
+    /**
+     * @var
+     */
 	protected $_latLng;
 	
 	/**
@@ -37,25 +31,9 @@ class Request
 	 */
 	protected $_components;
 	
-	/**
-	 * Indicates if the request is provided by a device with a location sensor (required)
-	 * 
-	 * @var boolean
-	 */
-	protected $_sensor;
-
-	/**
-	 * Google Maps Key
-	 *
-	 * @var string
-	 */
-	protected $_sKey;
-	
-	/**
-	 * Bounding box to limit results within a given viewport (optional)
-	 * 
-	 * @var LatLngBounds
-	 */
+    /**
+     * @var
+     */
 	protected $_bounds;
 	
 	/**
@@ -72,9 +50,9 @@ class Request
 	 */
 	protected $_language;
 
-	/**
-	 * @return the $address
-	 */
+    /**
+     * @return string
+     */
 	public function getAddress() 
 	{
 		return $this->_address;
@@ -88,9 +66,9 @@ class Request
 		$this->_address = $address;
 	}
 
-	/**
-	 * @return the $latLng
-	 */
+    /**
+     * @return mixed
+     */
 	public function getLatLng() 
 	{
 		return $this->_latLng;
@@ -98,18 +76,19 @@ class Request
 
     /**
      * @param Parameters\LatLngParameter $latLng
-     * @return Request
+     *
+     * @return $this
      */
-    public function setLatLng(LatLngParameter $latLng)
+    public function setLatLng(Parameters\LatLngParameter $latLng)
 	{
 		$this->_latLng = $latLng;
 
         return $this;
 	}
 
-	/**
-	 * @return the $bounds
-	 */
+    /**
+     * @return LatLngBounds
+     */
 	public function getBounds() 
 	{
 		return $this->_bounds;
@@ -117,18 +96,19 @@ class Request
 
     /**
      * @param Parameters\LatLngBoundsParameter $bounds
-     * @return Request
+     *
+     * @return $this
      */
-    public function setBounds(LatLngBoundsParameter $bounds)
+    public function setBounds(Parameters\LatLngBoundsParameter $bounds)
 	{
 		$this->_bounds = $bounds;
 
         return $this;
 	}
 
-	/**
-	 * @return the $language
-	 */
+    /**
+     * @return string
+     */
 	public function getLanguage() 
 	{
 		return $this->_language;
@@ -145,9 +125,9 @@ class Request
         return $this;
 	}
 
-	/**
-	 * @return the $region
-	 */
+    /**
+     * @return string
+     */
 	public function getRegion() 
 	{
 		return $this->_region;
@@ -163,10 +143,10 @@ class Request
 
         return $this;
 	}
-	
-	/**
-	 * @return the $components
-	 */
+
+    /**
+     * @return array
+     */
 	public function getComponents() 
 	{
 		return $this->_components;
@@ -174,9 +154,10 @@ class Request
 
     /**
      * @param Parameters\ComponentSetParameter $components
-     * @return Request
+     *
+     * @return $this
      */
-    public function setComponents(ComponentSetParameter $components)
+    public function setComponents(Parameters\ComponentSetParameter $components)
 	{
 		$this->_components = $components;
 
@@ -190,38 +171,34 @@ class Request
 	 */
 	public function getUrlParameters()
 	{
-		$requiredParameters = array('address', 'latlng', 'components');
-		$optionalParameters = array('bounds', 'language', 'region', 'components');
+		$requiredParameters = ['address', 'latlng', 'components'];
+		$optionalParameters = ['bounds', 'language', 'region', 'components'];
 	
-		$url = '';
+		$aParams = [];
 		foreach ($requiredParameters as $parameter) {
 			$method = 'get' . $parameter;
 			$requiredParam = $this->$method();
-			if (!empty($requiredParam)) {
-				if ($url !== '') {
-					$url .= '&';
-				}
+			if ($requiredParam !== null) {
 				if (is_object($requiredParam)) {
 					$requiredParam = $requiredParam->toString();
 				}
-				$url .= $parameter . '=' . urlencode($requiredParam);
+
+                $aParams[$parameter] = $requiredParam;
 			}
 		}
-		if ($url === '') {
-			return null;
-		}
-	
+
 		foreach ($optionalParameters as $option) {
 			$method = 'get' . $option;
 			$optionParam = $this->$method();
-			if (!empty($optionParam)) {
+			if ($optionParam !== null) {
 				if (is_object($optionParam)) {
 					$optionParam = $optionParam->toString();
 				}
-				$url .= '&' . $option . '=' . urlencode($optionParam);
+
+                $aParams[$option] = $optionParam;
 			}
 		}
 		
-		return $url;
+		return $aParams;
 	}
 }
