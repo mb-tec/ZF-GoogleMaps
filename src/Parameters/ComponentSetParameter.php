@@ -19,7 +19,7 @@ class ComponentSetParameter extends GenericCollection implements ParameterInterf
 	 */
 	public function __construct()
 	{
-		parent::__construct('MBtec\\GoogleMaps\\Parameters\\ComponentParameter');
+		parent::__construct(ComponentParameter::class);
 	}
 	
 	/**

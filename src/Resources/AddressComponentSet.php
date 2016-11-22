@@ -19,6 +19,6 @@ class AddressComponentSet extends GenericCollection
 	 */
 	public function __construct() 
 	{
-		parent::__construct('MBtecZfGoogleMaps\\Resources\\AddressComponent');
+		parent::__construct(AddressComponent::class);
 	}
 }
