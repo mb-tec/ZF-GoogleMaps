@@ -21,10 +21,12 @@ class GeoCoder
     const GOOGLE_MAPS_SCHEME = 'https';
     const GOOGLE_MAPS_APIS_URL = 'maps.googleapis.com';
     const GOOGLE_GEOCODING_API_PATH = '/maps/api/geocode/json';
+    const DEFAULT_LANG = 'en';
     const XML_FORMAT = 'xml';
     const JSON_FORMAT = 'json';
 
     private $_sApiServerKey = '';
+    private $_sDefaultLanguage = '';
 
     /**
      * Response format (XML or JSON)
@@ -42,11 +44,13 @@ class GeoCoder
      * GeoCoder constructor.
      *
      * @param        $sApiServerKey
+     * @param        $sDefaultLanguage
      * @param string $format
      */
-    public function __construct($sApiServerKey, $format = 'json')
+    public function __construct($sApiServerKey, $sDefaultLanguage, $format = 'json')
     {
         $this->_sApiServerKey = $sApiServerKey;
+        $this->_sDefaultLanguage = $sDefaultLanguage;
 
         $validFormats = [
             self::JSON_FORMAT,
@@ -146,14 +150,17 @@ class GeoCoder
     }
 
     /**
-     * @param $sAddress
+     * @param      $sAddress
+     * @param null $sLang
      *
      * @return MBtecZfGoogleMaps\Response
      */
-    public function geoCodeAddress($sAddress)
+    public function geoCodeAddress($sAddress, $sLang = null)
     {
         $oRequest = new MBtecZfGoogleMaps\Request();
-        $oRequest->setAddress($sAddress);
+        $oRequest
+            ->setAddress($sAddress)
+            ->setLanguage($sLang ?: $this->_sDefaultLanguage);
 
         return $this->_geocode($oRequest);
     }

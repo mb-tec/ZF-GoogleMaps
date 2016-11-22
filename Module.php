@@ -40,9 +40,13 @@ class Module implements ViewHelperProviderInterface, ServiceProviderInterface
         return [
             'factories' => [
                 'mbtec.zf-google_maps.geocoder.service' => function(ServiceManager $oSm) {
-                    $sApiKey = (string)$oSm->get('config')['mbtec']['zf-google_maps']['api']['server_key'];
+                    $aConfig = $oSm->get('config')['mbtec']['zf-google_maps']['api'];
+                    $sApiKey = (string)$aConfig['server_key'];
+                    $sDefaultLang = !empty($aConfig['default_lang'])
+                        ? $aConfig['default_lang']
+                        : Service\GeoCoder::DEFAULT_LANG;
 
-                    return new Service\GeoCoder($sApiKey);
+                    return new Service\GeoCoder($sApiKey, $sDefaultLang);
                 },
             ],
         ];

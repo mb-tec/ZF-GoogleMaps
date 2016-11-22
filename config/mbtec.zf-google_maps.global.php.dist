@@ -6,6 +6,7 @@ return [
             'api' => [
                 'browser_key' => '...',
                 'server_key' => '...',
+                'default_lang' => 'en',
             ],
         ],
     ],

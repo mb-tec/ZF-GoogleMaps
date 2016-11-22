@@ -58,12 +58,16 @@ class Request
 		return $this->_address;
 	}
 
-	/**
-	 * @param string $address
-	 */
+    /**
+     * @param $address
+     *
+     * @return $this
+     */
 	public function setAddress($address) 
 	{
 		$this->_address = $address;
+
+        return $this;
 	}
 
     /**
