@@ -2,7 +2,7 @@
 
 namespace MBtecZfGoogleMaps;
 
-use Zend\View\HelperPluginManager;
+use Zend\ServiceManager\ServiceManager;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
@@ -23,7 +23,7 @@ class Module implements ViewHelperProviderInterface, ServiceProviderInterface
     {
         return [
             'factories' => [
-                'googleMapsJs' => function($oSm) {
+                'googleMapsJs' => function(ServiceManager $oSm) {
                     $sApiKey = (string)$oSm->get('config')['mbtec']['zf-google_maps']['api']['browser_key'];
 
                     return new View\Helper\GoogleMapsJs($sApiKey);
@@ -39,7 +39,7 @@ class Module implements ViewHelperProviderInterface, ServiceProviderInterface
     {
         return [
             'factories' => [
-                'mbtec.zf-google_maps.service' => function($oSm) {
+                'mbtec.zf-google_maps.geocoder.service' => function(ServiceManager $oSm) {
                     $sApiKey = (string)$oSm->get('config')['mbtec']['zf-google_maps']['api']['server_key'];
 
                     return new Service\GeoCoder($sApiKey);

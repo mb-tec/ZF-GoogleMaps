@@ -61,16 +61,6 @@ class GeoCoder
     }
 
     /**
-     * @return MBtecZfGoogleMaps\Request
-     */
-    public function getNewRequest()
-    {
-        $oRequest = new MBtecZfGoogleMaps\Request();
-
-        return $oRequest;
-    }
-
-    /**
      * @return string
      */
     public function getFormat()
@@ -91,13 +81,11 @@ class GeoCoder
     }
 
     /**
-     * @param Request $request
+     * @param MBtecZfGoogleMaps\Request $request
      *
-     * @return Response
-     * @throws Exception\InvalidArgumentException
-     * @throws Exception\RuntimeException
+     * @return MBtecZfGoogleMaps\Response
      */
-    public function geocode(Request $request)
+    protected function _geocode(MBtecZfGoogleMaps\Request $request)
     {
         if (null === $request) {
             throw new MBtecZfGoogleMaps\Exception\InvalidArgumentException('request');
@@ -148,5 +136,35 @@ class GeoCoder
         $response->setResults($resultSet);
 
         return $response;
+    }
+
+    /**
+     * @param $sAddress
+     *
+     * @return MBtecZfGoogleMaps\Response
+     */
+    public function geoCodeAddress($sAddress)
+    {
+        $oRequest = new MBtecZfGoogleMaps\Request();
+        $oRequest->setAddress($sAddress);
+
+        return $this->_geocode($oRequest);
+    }
+
+    /**
+     * @param $fLat
+     * @param $fLng
+     *
+     * @return mixed
+     */
+    public function geoCodeLatLng($fLat, $fLng)
+    {
+        $oLatLng = new MBtecZfGoogleMaps\Resources\LatLng(['lat' => $fLat, 'lng' => $fLng]);
+        $oLatLngParam = new MBtecZfGoogleMaps\Parameters\LatLngParameter($oLatLng);
+
+        $oRequest = new MBtecZfGoogleMaps\Request();
+        $oRequest->setLatLng($oLatLngParam);
+
+        return $this->geocode($oRequest);
     }
 }

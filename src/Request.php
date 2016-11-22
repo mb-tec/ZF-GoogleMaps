@@ -16,9 +16,6 @@ use MBtecZfGoogleMaps\Parameters\LatLngParameter;
  */
 class Request
 {
-	const SENSOR = 'true';
-	const NO_SENSOR = 'false';
-	
 	/**
 	 * Address to perform geocoding (required)
 	 * 
@@ -75,16 +72,6 @@ class Request
 	 */
 	protected $_language;
 
-	/**
-	 * Request constructor.
-	 *
-	 * @param string $sensor
-	 */
-	public function __construct($sensor = self::NO_SENSOR)
-	{
-		$this->_sensor = $sensor;
-	}
-	
 	/**
 	 * @return the $address
 	 */
@@ -197,44 +184,6 @@ class Request
 	}
 
 	/**
-	 * @return the $sensor
-	 */
-	public function getSensor() 
-	{
-		return $this->_sensor;
-	}
-
-    /**
-     * @param $sensor
-     * @return Request
-     */
-    public function setSensor($sensor)
-	{
-		$this->_sensor = $sensor;
-
-        return $this;
-	}
-
-	/**
-	 * @return the $sensor
-	 */
-	public function getKey()
-	{
-		return $this->_sKey;
-	}
-
-	/**
-	 * @param $sKey
-	 * @return Request
-	 */
-	public function setKey($sKey)
-	{
-		$this->_sKey = $sKey;
-
-		return $this;
-	}
-	
-	/**
 	 * Tranform request to URL parameters
 	 *
 	 * @return NULL|string
@@ -242,7 +191,7 @@ class Request
 	public function getUrlParameters()
 	{
 		$requiredParameters = array('address', 'latlng', 'components', 'sensor');
-		$optionalParameters = array('bounds', 'language', 'region', 'components', 'key');
+		$optionalParameters = array('bounds', 'language', 'region', 'components');
 	
 		$url = '';
 		foreach ($requiredParameters as $parameter) {
