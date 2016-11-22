@@ -1,28 +1,30 @@
 <?php
 
-namespace MBtecZfGoogleMaps;
+namespace MBtecZfGoogleMaps\Service;
 
 use Zend\Hydrator\ArraySerializable;
 use Zend\Json\Json;
 use Zend\Http\Client as HttpClient;
 use Zend\Uri\Uri;
-use MBtecZfGoogleMaps\Exception;
+use MBtecZfGoogleMaps;
 
 /**
- * Class        Geocoder
- * @package     MBtecZfGoogleMaps
+ * Class        GeoCoder
+ * @package     MBtecZfGoogleMaps\Service
  * @author      Matthias Büsing <info@mb-tec.eu>
  * @copyright   2016 Matthias Büsing
  * @license     GNU General Public License
  * @link        http://mb-tec.eu
  */
-class Geocoder
+class GeoCoder
 {
     const GOOGLE_MAPS_SCHEME = 'https';
     const GOOGLE_MAPS_APIS_URL = 'maps.googleapis.com';
     const GOOGLE_GEOCODING_API_PATH = '/maps/api/geocode/json';
     const XML_FORMAT = 'xml';
     const JSON_FORMAT = 'json';
+
+    private $_sApiServerKey = '';
 
     /**
      * Response format (XML or JSON)
@@ -37,18 +39,35 @@ class Geocoder
     protected $httpClient;
 
     /**
+     * GeoCoder constructor.
+     *
+     * @param        $sApiServerKey
      * @param string $format
      */
-    public function __construct($format = 'json')
+    public function __construct($sApiServerKey, $format = 'json')
     {
-        $validFormats = array(
+        $this->_sApiServerKey = $sApiServerKey;
+
+        $validFormats = [
             self::JSON_FORMAT,
             self::XML_FORMAT,
-        );
+        ];
+
         if (!in_array($format, $validFormats)) {
-            throw new Exception\InvalidArgumentException('format');
+            throw new MBtecZfGoogleMaps\Exception\InvalidArgumentException('format');
         }
+
         $this->format = $format;
+    }
+
+    /**
+     * @return MBtecZfGoogleMaps\Request
+     */
+    public function getNewRequest()
+    {
+        $oRequest = new MBtecZfGoogleMaps\Request();
+
+        return $oRequest;
     }
 
     /**
@@ -81,7 +100,7 @@ class Geocoder
     public function geocode(Request $request)
     {
         if (null === $request) {
-            throw new Exception\InvalidArgumentException('request');
+            throw new MBtecZfGoogleMaps\Exception\InvalidArgumentException('request');
         }
 
         $uri = new Uri();
@@ -91,35 +110,38 @@ class Geocoder
 
         $urlParameters = $request->getUrlParameters();
         if (null === $urlParameters) {
-            throw new Exception\RuntimeException('Invalid URL parameters');
+            throw new MBtecZfGoogleMaps\Exception\RuntimeException('Invalid URL parameters');
         }
+
+        $urlParameters['key'] = $this->_sApiServerKey;
 
         $uri->setQuery($urlParameters);
         $client = $this->getHttpClient();
         $client->resetParameters();
-        $client->setUri($uri->toString());
+        $client->setUri($uri);
+
         $stream = $client->send();
 
         $body = Json::decode($stream->getBody(), Json::TYPE_ARRAY);
         $hydrator = new ArraySerializable();
 
-        $response = new Response();
+        $response = new MBtecZfGoogleMaps\Response();
         $response->setRawBody($body);
         if (!isset($body['status'])) {
-            throw new Exception\RuntimeException('Invalid status');
+            throw new MBtecZfGoogleMaps\Exception\RuntimeException('Invalid status');
         }
         $response->setStatus($body['status']);
         if (!isset($body['results'])) {
-            throw new Exception\RuntimeException('Invalid results');
+            throw new MBtecZfGoogleMaps\Exception\RuntimeException('Invalid results');
         }
 
         if (empty($body['results'])) {
-            throw new Exception\NoResultsException('Empty resultset');
+            throw new MBtecZfGoogleMaps\Exception\NoResultsException('Empty resultset');
         }
 
-        $resultSet = new ResultSet();
+        $resultSet = new MBtecZfGoogleMaps\ResultSet();
         foreach ($body['results'] as $data) {
-            $result = new Result();
+            $result = new MBtecZfGoogleMaps\Result();
             $hydrator->hydrate($data, $result);
             $resultSet->addElement($result);
         }

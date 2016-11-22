@@ -13,7 +13,7 @@ use MBtecZfGoogleMaps\Exception\OutOfBoundsException;
  * @license     GNU General Public License
  * @link        http://mb-tec.eu
  */
-abstract class GenericCollection implements  \Countable, \Iterator, \ArrayAccess
+abstract class GenericCollection implements \Countable, \Iterator, \ArrayAccess
 {
 	/**
 	 * @var array

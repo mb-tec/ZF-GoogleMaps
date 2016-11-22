@@ -3,8 +3,8 @@
 namespace MBtecZfGoogleMaps;
 
 use Zend\View\HelperPluginManager;
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
 /**
  * Class        Module
@@ -14,23 +14,8 @@ use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
  * @license     GNU General Public License
  * @link        http://mb-tec.eu
  */
-class Module implements AutoloaderProviderInterface, ViewHelperProviderInterface
+class Module implements ViewHelperProviderInterface, ServiceProviderInterface
 {
-    /**
-     * Return MBtecZfGoogleMaps autoload config.
-     *
-     * @see AutoloaderProviderInterface::getAutoloaderConfig()
-     * @return array
-     */
-    public function getAutoloaderConfig()
-    {
-        return [
-            'Zend\Loader\ClassMapAutoloader' => [
-                __DIR__ . '/autoload_classmap.php',
-            ],
-        ];
-    }
-
     /**
      * @return array
      */
@@ -39,9 +24,25 @@ class Module implements AutoloaderProviderInterface, ViewHelperProviderInterface
         return [
             'factories' => [
                 'googleMapsJs' => function($oSm) {
-                    $sApiKey = (string)$oSm->get('config')['mbtec']['google']['api']['browser_key'];
+                    $sApiKey = (string)$oSm->get('config')['mbtec']['zf-google_maps']['api']['browser_key'];
 
                     return new View\Helper\GoogleMapsJs($sApiKey);
+                },
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getServiceConfig()
+    {
+        return [
+            'factories' => [
+                'mbtec.zf-google_maps.service' => function($oSm) {
+                    $sApiKey = (string)$oSm->get('config')['mbtec']['zf-google_maps']['api']['server_key'];
+
+                    return new Service\GeoCoder($sApiKey);
                 },
             ],
         ];

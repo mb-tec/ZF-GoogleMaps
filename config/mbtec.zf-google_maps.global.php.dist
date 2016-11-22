@@ -2,7 +2,7 @@
 
 return [
     'mbtec' => [
-        'google' => [
+        'zf-google_maps' => [
             'api' => [
                 'browser_key' => '...',
                 'server_key' => '...',
