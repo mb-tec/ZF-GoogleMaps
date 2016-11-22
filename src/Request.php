@@ -190,7 +190,7 @@ class Request
 	 */
 	public function getUrlParameters()
 	{
-		$requiredParameters = array('address', 'latlng', 'components', 'sensor');
+		$requiredParameters = array('address', 'latlng', 'components');
 		$optionalParameters = array('bounds', 'language', 'region', 'components');
 	
 		$url = '';
