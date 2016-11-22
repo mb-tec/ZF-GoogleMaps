@@ -75,6 +75,18 @@ class Response
         return $this;
 	}
 
+    /**
+     * @return null
+     */
+	public function getResult()
+    {
+        if (isset($this->results[0])) {
+            return $this->results[0];
+        }
+
+        return null;
+    }
+
 	/**
 	 * @return string
 	 */
