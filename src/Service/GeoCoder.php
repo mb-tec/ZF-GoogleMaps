@@ -5,7 +5,7 @@ namespace MBtecZfGoogleMaps\Service;
 use Zend\Hydrator\ArraySerializable;
 use Zend\Json\Json;
 use Zend\Http\Client as HttpClient;
-use Zend\Uri\Uri;
+use Zend\Uri\Http as HttpUri;
 use MBtecZfGoogleMaps;
 
 /**
@@ -98,7 +98,7 @@ class GeoCoder
 
         $aUrlParameters['key'] = $this->_sApiServerKey;
 
-        $uri = new Uri();
+        $uri = new HttpUri();
         $uri
             ->setScheme(self::GOOGLE_MAPS_SCHEME)
             ->setHost(self::GOOGLE_MAPS_APIS_URL)
