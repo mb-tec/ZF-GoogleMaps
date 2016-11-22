@@ -2,9 +2,6 @@
 
 namespace MBtecZfGoogleMaps;
 
-use MBtecZfGoogleMaps\Resources\AddressComponent;
-use MBtecZfGoogleMaps\Resources\Geometry;
-use MBtecZfGoogleMaps\Resources\AddressComponentSet;
 use Zend\Stdlib\ArraySerializableInterface;
 use MBtecZfGoogleMaps\Exception\InvalidArgumentException;
 
@@ -54,7 +51,7 @@ class Result implements ArraySerializableInterface
     }
 
     /**
-     * @return the $addressComponents
+     * @return AddressComponentSet
      */
     public function getAddressComponents()
     {
@@ -62,7 +59,7 @@ class Result implements ArraySerializableInterface
     }
 
     /**
-     * @return the $formattedAddress
+     * @return string
      */
     public function getFormattedAddress()
     {
@@ -70,7 +67,7 @@ class Result implements ArraySerializableInterface
     }
 
     /**
-     * @return the $geometry
+     * @return Geometry
      */
     public function getGeometry()
     {
@@ -78,7 +75,7 @@ class Result implements ArraySerializableInterface
     }
 
     /**
-     * @return the $types
+     * @return array
      */
     public function getTypes()
     {
@@ -86,20 +83,23 @@ class Result implements ArraySerializableInterface
     }
 
     /**
-     * @return the $partialMatch
+     * @return bool
      */
     public function getPartialMatch()
     {
         return $this->partialMatch;
     }
 
-    public function addAddressComponent(AddressComponent $addressComponent)
+    /**
+     * @param Resources\AddressComponent $addressComponent
+     */
+    public function addAddressComponent(Resources\AddressComponent $addressComponent)
     {
         if (null === $addressComponent) {
             throw new InvalidArgumentException('addressComponent');
         }
         if (null === $this->addressComponents) {
-            $this->addressComponents = new AddressComponentSet();
+            $this->addressComponents = new Resources\AddressComponentSet();
         }
         $this->addressComponents->addElement($addressComponent);
     }
@@ -113,7 +113,7 @@ class Result implements ArraySerializableInterface
         if (isset($data['address_components']) && is_array($data['address_components'])) {
             foreach ($data['address_components'] as $address) {
                 if (is_array($address)) {
-                    $this->addAddressComponent(new AddressComponent($address));
+                    $this->addAddressComponent(new Resources\AddressComponent($address));
                 }
             }
         }
@@ -124,7 +124,7 @@ class Result implements ArraySerializableInterface
             $this->formattedAddress = $data['formatted_address'];
         }
         if (isset($data['geometry']) && is_array($data['geometry'])) {
-            $this->geometry = new Geometry($data['geometry']);
+            $this->geometry = new Resources\Geometry($data['geometry']);
         }
     }
 
@@ -139,11 +139,11 @@ class Result implements ArraySerializableInterface
             $addressComponents[] = $addressComponent->getArrayCopy();
         }
         // Partial match ?
-        return array(
+        return [
             'address_components' => $addressComponents,
             'formatted_address' => $this->getFormattedAddress(),
             'geometry' => $this->getGeometry()->getArrayCopy(),
             'types' => $this->getTypes(),
-        );
+        ];
     }
 }

@@ -28,7 +28,8 @@
     "zendframework/zend-uri": "^2.5",
     "zendframework/zend-hydrator": "^2.0",
     "zendframework/zend-json": "^3.0",
-    "zendframework/zend-http": "^2.5"
+    "zendframework/zend-http": "^2.5",
+    "zendframework/zend-stdlib": "^3.0"
   },
   "suggest": {
     "zendframework/zend-modulemanager": "To use it as a Zend Framework module"

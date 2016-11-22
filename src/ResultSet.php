@@ -17,6 +17,6 @@ class ResultSet extends GenericCollection
 	 */
 	public function __construct()
 	{
-		parent::__construct('MBtec\\GoogleMaps\\Result');
+		parent::__construct('MBtecZfGoogleMaps\\Result');
 	}
 }
