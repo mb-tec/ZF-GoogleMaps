@@ -179,6 +179,6 @@ class GeoCoder
         $oRequest = new MBtecZfGoogleMaps\Request();
         $oRequest->setLatLng($oLatLngParam);
 
-        return $this->geocode($oRequest);
+        return $this->_geocode($oRequest);
     }
 }
